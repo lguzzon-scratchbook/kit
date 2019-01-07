@@ -17,7 +17,7 @@ build_script:
   - "clang --version"
   - stack build kitlang:kitc
   - stack install
-  - "7z a kit-{version}.7z .\std"
+  - "7z a kit-{version}.7z .\\std"
   - stack exec kitc -- -h
   - stack exec kitc -- --env
 #  - TEST_RUNS=1 stack test --test-arguments '+RTS -N -RTS'
