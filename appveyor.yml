@@ -6,24 +6,14 @@ cache:
   - "%APPDATA%\\stack"
   - .stack-work
 
-environment:
-  matrix:
-    - ARCH: x86
-      CYGWIN: C:\Cygwin
-      CHOST: i686-w64-mingw32
-      CC: i686-w64-mingw32-gcc
-    - ARCH: x86_64
-      CYGWIN: C:\Cygwin64
-      CHOST: x86_64-w64-mingw32
-      CC: x86_64-w64-mingw32-gcc
-
 install:
+  - choco install mingw
+  - choco upgrade mingw
   - choco install haskell-stack --no-progress
   - choco upgrade haskell-stack --no-progress
   - refreshenv
 
 build_script:
-  - SET PATH=C:\%CYGWIN%\bin;%PATH%
   - "gcc --version"
   - "clang --version"
   - stack build kitlang:kitc
