@@ -1,0 +1,21 @@
+version: 0.0.0.{build}
+
+shallow_clone: true
+
+cache:
+  - "%APPDATA%\\stack"
+  - .stack-work
+
+install:
+  - choco install haskell-stack --no-progress
+  - choco upgrade haskell-stack --no-progress
+  - refreshenv
+
+build_script:
+  - "gcc --version"
+  - "clang --version"
+  - stack build kitlang:kitc
+  - stack exec kitc -- -h
+  - stack exec kitc -- --env
+  - TEST_RUNS=1 stack test --test-arguments '+RTS -N -RTS'
+  - stack install
