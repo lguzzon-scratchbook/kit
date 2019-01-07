@@ -7,7 +7,8 @@ cache:
   - .stack-work
 
 install:
-  - "set PATH=C:\\msys64\\mingw64\\bin;C:\\msys64\\usr\\bin;%PATH%"
+  - choco install mingw --no-progress
+  - refreshenv
   - choco install haskell-stack --no-progress
   - refreshenv
 
@@ -16,11 +17,11 @@ build_script:
   - "clang --version"
   - stack build kitlang:kitc
   - stack install
-  - "7z a kit-{version}.7z .\\std"
+  - "7z a kit-win64.7z C:\\Users\\appveyor\\AppData\\Roaming\\local\\bin\\kitc.exe .\\std"
   - stack exec kitc -- -h
   - stack exec kitc -- --env
 #  - TEST_RUNS=1 stack test --test-arguments '+RTS -N -RTS'
 
 artifacts:
-  - path: kit-{version}.7z
+  - path: kit-win64.7z
     name: kit-lang
