@@ -3,6 +3,8 @@ version: 0.0.0.{build}
 shallow_clone: true
 
 cache:
+  - C:\ProgramData\chocolatey\bin -> appveyor.yml
+  - C:\ProgramData\chocolatey\lib -> appveyor.yml
   - "%APPDATA%\\stack"
   - .stack-work
 
@@ -20,6 +22,7 @@ build_script:
   - "7z a kit-win64.7z C:\\Users\\appveyor\\AppData\\Roaming\\local\\bin\\kitc.exe .\\std"
   - stack exec kitc -- -h
   - stack exec kitc -- --env
+  - set
 #  - TEST_RUNS=1 stack test --test-arguments '+RTS -N -RTS'
 
 artifacts:
