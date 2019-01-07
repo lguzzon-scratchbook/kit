@@ -7,9 +7,7 @@ cache:
   - .stack-work
 
 install:
-  - choco install mingw
-  - refreshenv
-  - choco install ghc --no-progress
+  - choco install mingw --no-progress
   - refreshenv
   - choco install haskell-stack --no-progress
   - refreshenv
